@@ -1,0 +1,16 @@
+[Unit]
+Description=LOGO! Monitor
+After=graphical-session.target network-online.target
+Wants=graphical-session.target network-online.target
+
+[Service]
+User=svbhan
+WorkingDirectory=%h/logo-cam
+ExecStart=/usr/bin/python3 %h/logo-cam/logo_cam.py
+Restart=on-failure
+RestartSec=10
+Environment=DISPLAY=:0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+
+[Install]
+WantedBy=graphical-session.target
