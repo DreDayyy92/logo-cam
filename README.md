@@ -135,26 +135,6 @@ python3 logo_cam.py
  
 Die Logdatei liegt unter `~/logo_monitor.log` und wird automatisch rotiert (max. 1 MB × 4 Dateien).
  
----
- 
-## Deployment auf mehrere Raspberry Pis
- 
-Wenn dasselbe Setup auf mehreren Geräten ausgerollt werden soll:
- 
-```bash
-# SSH-Key einmalig auf jeden Pi kopieren
-ssh-copy-id user@192.168.1.201
- 
-# Dateien übertragen und installieren
-scp logo_cam.py config.ini logo_cam.service user@192.168.1.201:~/
-ssh user@192.168.1.201 "
-  sudo cp logo_cam.service /etc/systemd/system/ &&
-  sudo systemctl daemon-reload &&
-  sudo systemctl enable logo_cam &&
-  sudo systemctl start logo_cam
-"
-```
- 
 Die `config.ini` kann pro Gerät vorab angepasst werden (z. B. unterschiedliche LOGO!-IPs oder Streams).
  
 ---
